@@ -157,6 +157,52 @@
         const today = new Date().toISOString().split('T')[0];
         const history = JSON.parse(localStorage.getItem('pomodoroHistory')) || {};
         completedPomodorosDisplay.textContent = history[today] || 0;
+
+        // Agregar esta función para mantener la pantalla encendida
+        function keepScreenAwake() {
+            if ('wakeLock' in navigator) {
+                let wakeLock = null;
+
+                const requestWakeLock = async () => {
+                    try {
+                        wakeLock = await navigator.wakeLock.request('screen');
+                        console.log('Wake Lock activo');
+                    } catch (err) {
+                        console.error(`${err.name}, ${err.message}`);
+                    }
+                };
+
+                const releaseWakeLock = () => {
+                    if (wakeLock !== null) {
+                        wakeLock.release()
+                            .then(() => {
+                                console.log('Wake Lock liberado');
+                                wakeLock = null;
+                            });
+                    }
+                };
+
+                // Activar Wake Lock cuando se inicia el temporizador
+                startBtn.addEventListener('click', () => {
+                    if (!isRunning) {
+                        requestWakeLock();
+                    }
+                });
+
+                // Liberar Wake Lock cuando se reinicia el temporizador
+                resetBtn.addEventListener('click', releaseWakeLock);
+
+                // Liberar Wake Lock cuando la página se oculta
+                document.addEventListener('visibilitychange', () => {
+                    if (wakeLock !== null && document.visibilityState === 'hidden') {
+                        releaseWakeLock();
+                    }
+                });
+            }
+        }
+
+        // Llamar a la función para mantener la pantalla encendida
+        keepScreenAwake();
     </script>
 </body>
 </html>
