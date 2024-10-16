@@ -10,6 +10,8 @@ A simple Pomodoro timer application with history tracking, built using HTML, CSS
 - History of completed Pomodoros
 - Desktop notifications (if permitted)
 - Sound alerts for work and break periods
+- Tailwind CSS for styling
+- Tailwind JS for additional functionality
 
 ## Usage
 
