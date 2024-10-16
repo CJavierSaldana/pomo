@@ -4,58 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro App con Historial</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        .container {
-            text-align: center;
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            max-width: 600px;
-            width: 100%;
-        }
-        #timer {
-            font-size: 3rem;
-            margin: 1rem 0;
-        }
-        button {
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
-            margin: 0.5rem;
-            cursor: pointer;
-        }
-        #historyContainer {
-            margin-top: 2rem;
-            text-align: left;
-        }
-        #historyList {
-            list-style-type: none;
-            padding: 0;
-        }
-        #historyList li {
-            margin-bottom: 0.5rem;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
 </head>
-<body>
-    <div class="container">
-        <h1>Pomodoro App</h1>
-        <div id="timer">25:00</div>
-        <button id="startBtn">Iniciar</button>
-        <button id="resetBtn">Reiniciar</button>
-        <p>Pomodoros completados hoy: <span id="completedPomodoros">0</span></p>
-        <div id="historyContainer">
-            <h2>Historial de Pomodoros</h2>
-            <ul id="historyList"></ul>
+<body class="flex justify-center items-center min-h-screen bg-gray-100">
+    <div class="container text-center bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
+        <h1 class="text-3xl font-bold mb-4">Pomodoro App</h1>
+        <div id="timer" class="text-6xl mb-4">25:00</div>
+        <button id="startBtn" class="text-lg px-4 py-2 m-2 bg-blue-500 text-white rounded">Iniciar</button>
+        <button id="resetBtn" class="text-lg px-4 py-2 m-2 bg-red-500 text-white rounded">Reiniciar</button>
+        <p class="mt-4">Pomodoros completados hoy: <span id="completedPomodoros">0</span></p>
+        <div id="historyContainer" class="mt-8 text-left">
+            <h2 class="text-2xl font-semibold mb-2">Historial de Pomodoros</h2>
+            <ul id="historyList" class="list-none p-0"></ul>
         </div>
     </div>
 
